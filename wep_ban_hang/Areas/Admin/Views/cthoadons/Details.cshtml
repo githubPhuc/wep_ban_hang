@@ -1,0 +1,43 @@
+﻿@model wep_ban_hang.Areas.Admin.Models.cthoadon
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>cthoadon</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.soluong)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.soluong)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.gia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.gia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.hoadons)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.hoadons.diachi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sanphams)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sanphams.danhgia)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
