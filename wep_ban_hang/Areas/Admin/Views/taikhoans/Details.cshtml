@@ -11,52 +11,52 @@
     <h4>taikhoan</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.hoten)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.hoten)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.email)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.email)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.tendangnhap)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.tendangnhap)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.matkhau)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.matkhau)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.hinhanh)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.hinhanh)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.diachi)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.diachi)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.isadmin)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.isadmin)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.trangthai)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.trangthai)
         </dd>
     </dl>
@@ -64,4 +64,78 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>
+<div class="col-lg-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Detaiils</h4>
+            <p class="card-description">
+                Account
+            </p>
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.hoten)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.hoten)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.email)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.tendangnhap)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.tendangnhap)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.matkhau)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.matkhau)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.hinhanh)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.hinhanh)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.diachi)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.diachi)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.isadmin)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.isadmin)
+                </dd>
+                <dd class="col-sm-10">
+                    <div class="col-md-6">
+                        <span><img id="hinh" src="~/img/accounts/@Html.DisplayFor(model => model.hinhanh)" width="200" height="200" alt="" /></span>
+                    </div>
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.trangthai)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+           <dd>
+                    <a class="btn btn-primary mb-2" asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+                    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+                </dd>
+            </dl>
+
+
+
+        </div>
+
+    </div>
 </div>
