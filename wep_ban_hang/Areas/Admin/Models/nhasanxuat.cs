@@ -10,10 +10,10 @@ namespace wep_ban_hang.Areas.Admin.Models
     {
         [Key]
         public int id { get; set; }
-        [Display(Name = "Tên sản phẩm")]
-        [Required(ErrorMessage = "Tên sản phẩm không được bỏ trống"), MinLength(2, ErrorMessage = "Tên sản phẩm phải có tối thiểu 2 ký tự"), MaxLength(250, ErrorMessage = "Tên sản phẩm có tối đa 250 ký tự")]
+        [Display(Name = "Tên nhà sản xuất")]
+        [Required(ErrorMessage = "Tên nhà sản xuất không được bỏ trống"), MinLength(2, ErrorMessage = "Tên nhà sản xuất phải có tối thiểu 2 ký tự"), MaxLength(250, ErrorMessage = "Tên nhà sản xuất có tối đa 250 ký tự")]
         public string tennsx { get; set; }
-        [Display(Name = "Ảnh đại diện")]
+        [Display(Name = "Ảnh công ty")]
         [RegularExpression(@"^[a-zA-Z0-9_]+\.(jpg|JPG|png|PNG)$", ErrorMessage = "Không đúng định dạng .jpg hoặc .png")]
         public string hinhanh { get; set; }
         [Display(Name = "Địa chỉ")]

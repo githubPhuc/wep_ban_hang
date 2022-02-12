@@ -8,6 +8,8 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
     <Folder Include="wwwroot\img\accounts\" />
+    <Folder Include="wwwroot\img\nhasx\" />
+    <Folder Include="wwwroot\img\sanphams\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +24,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="MySql.Data" Version="8.0.28" />
   </ItemGroup>
 
 </Project>

@@ -19,15 +19,16 @@ namespace wep_ban_hang.Areas.Admin.Models
         public int gia { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập đánh giá")]
         public string danhgia { get; set; }
-        [Display(Name = "Ảnh đại diện")]
+        [Display(Name = "Ảnh sản phẩm")]
         [RegularExpression(@"^[a-zA-Z0-9_]+\.(jpg|JPG|png|PNG)$", ErrorMessage = "Không đúng định dạng .jpg hoặc .png")]
         public string hinhanh { get; set; }
-    
         [Display(Name = "Loại sản phẩm")]
         [Required(ErrorMessage = "Mã loại sản phẩm không được bỏ trống")]
+        public string lspham { get; set; }
         public ctsanpham ctsanphams { get; set; }
         [Display(Name = "Nhà sản xuất")]
         [Required(ErrorMessage = "Nhà sản xuất không được bỏ trống")]
+        public string nsxuat { get; set; }
         public nhasanxuat nhasanxuat { get; set; }
         [Display(Name = "Trạng thái")]
         public bool trangthai { get; set; }

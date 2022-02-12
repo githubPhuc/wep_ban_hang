@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace wep_ban_hang.Migrations
 {
-    public partial class migrate1 : Migration
+    public partial class migration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace wep_ban_hang.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    tensanpham = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    tenloaisanpham = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     trangthai = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -68,7 +68,9 @@ namespace wep_ban_hang.Migrations
                     gia = table.Column<int>(type: "int", nullable: false),
                     danhgia = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     hinhanh = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ctsanphamsid = table.Column<int>(type: "int", nullable: false),
+                    lspham = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ctsanphamsid = table.Column<int>(type: "int", nullable: true),
+                    nsxuat = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     nhasanxuatid = table.Column<int>(type: "int", nullable: true),
                     trangthai = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -80,7 +82,7 @@ namespace wep_ban_hang.Migrations
                         column: x => x.ctsanphamsid,
                         principalTable: "ctsanpham",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_sanpham_nhasanxuat_nhasanxuatid",
                         column: x => x.nhasanxuatid,

@@ -5,64 +5,63 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>hoadon</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="id" />
-            <div class="form-group">
-                <label asp-for="mahd" class="control-label"></label>
-                <input asp-for="mahd" class="form-control" />
-                <span asp-validation-for="mahd" class="text-danger"></span>
+<div class="col-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title ">Edit</h4>
+            <p class="card-description"> Edit Hóa Đơn </p>
+            <form class="forms-sample" asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id" />
+                <div class="form-group">
+                    <label asp-for="mahd" class="control-label"></label>
+                    <input asp-for="mahd" class="form-control" />
+                    <span asp-validation-for="mahd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="makh" class="control-label"></label>
+                    <input asp-for="makh" class="form-control" />
+                    <span asp-validation-for="makh" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ngaylap" class="control-label"></label>
+                    <input asp-for="ngaylap" class="form-control" />
+                    <span asp-validation-for="ngaylap" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="diachi" class="control-label"></label>
+                    <input asp-for="diachi" class="form-control" />
+                    <span asp-validation-for="diachi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="sodt" class="control-label"></label>
+                    <input asp-for="sodt" class="form-control" />
+                    <span asp-validation-for="sodt" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="soluong" class="control-label"></label>
+                    <input asp-for="soluong" class="form-control" />
+                    <span asp-validation-for="soluong" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="thanhtien" class="control-label"></label>
+                    <input asp-for="thanhtien" class="form-control" />
+                    <span asp-validation-for="thanhtien" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="trangthai" /> @Html.DisplayNameFor(model => model.trangthai)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="makh" class="control-label"></label>
-                <input asp-for="makh" class="form-control" />
-                <span asp-validation-for="makh" class="text-danger"></span>
+            <div>
+                <a class="btn btn-outline-success btn-fw " asp-action="Index">Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="ngaylap" class="control-label"></label>
-                <input asp-for="ngaylap" class="form-control" />
-                <span asp-validation-for="ngaylap" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="diachi" class="control-label"></label>
-                <input asp-for="diachi" class="form-control" />
-                <span asp-validation-for="diachi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="sodt" class="control-label"></label>
-                <input asp-for="sodt" class="form-control" />
-                <span asp-validation-for="sodt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="soluong" class="control-label"></label>
-                <input asp-for="soluong" class="form-control" />
-                <span asp-validation-for="soluong" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="thanhtien" class="control-label"></label>
-                <input asp-for="thanhtien" class="form-control" />
-                <span asp-validation-for="thanhtien" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="trangthai" /> @Html.DisplayNameFor(model => model.trangthai)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

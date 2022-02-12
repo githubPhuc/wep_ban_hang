@@ -5,27 +5,32 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="col-lg-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Thông tin chi tiết</h4>
+            <p class="card-description">
+                Giỏ Hàng
+            </p>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.tenloaisanpham)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.tenloaisanpham)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.trangthai)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+                <dd>
+                    <a class="btn btn-primary mb-2" asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+                    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+                </dd>
+            </dl>
+        </div>
 
-<div>
-    <h4>ctsanpham</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.tensanpham)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.tensanpham)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.trangthai)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.trangthai)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    </div>
 </div>

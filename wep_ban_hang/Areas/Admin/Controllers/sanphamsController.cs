@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,15 +17,18 @@ namespace wep_ban_hang.Areas.Admin.Controllers
     public class sanphamsController : Controller
     {
         private readonly wep_ban_hangContext _context;
-
-        public sanphamsController(wep_ban_hangContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public sanphamsController(wep_ban_hangContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Admin/sanphams
         public async Task<IActionResult> Index()
         {
+            var eshopContext = _context.sanpham.Include(p => p.ctsanphams.tenloaisanpham);
+            
             return View(await _context.sanpham.ToListAsync());
         }
 
@@ -47,6 +53,8 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // GET: Admin/sanphams/Create
         public IActionResult Create()
         {
+            ViewData["lspham"] = new SelectList(_context.ctsanpham, "id", "tenloaisanpham");
+            ViewData["nsxuat"] = new SelectList(_context.nhasanxuat, "id", "tennsx");
             return View();
         }
 
@@ -55,14 +63,30 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,tensanpham,gia,danhgia,hinhanh,trangthai")] sanpham sanpham)
+        public async Task<IActionResult> Create([Bind("id,tensanpham,gia,danhgia,lspham,nsxuat,hinhanh,trangthai")] sanpham sanpham, IFormFile ful_hinhanh)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(sanpham);
                 await _context.SaveChangesAsync();
+                if (ful_hinhanh != null)
+                {
+                    var fileName = sanpham.id.ToString() + Path.GetExtension(ful_hinhanh.FileName);
+                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "img", "sanphams");
+                    var filePath = Path.Combine(uploadPath, fileName);
+                    using (FileStream fs = System.IO.File.Create(filePath))
+                    {
+                        ful_hinhanh.CopyTo(fs);
+                        fs.Flush();
+                    }
+                    sanpham.hinhanh = fileName;
+                    _context.Update(sanpham);
+                    await _context.SaveChangesAsync();
+                }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["lspham"] = new SelectList(_context.sanpham, "Id", "tenloai", sanpham.lspham);
+            ViewData["nsxuat"] = new SelectList(_context.sanpham, "Id", "tennsx", sanpham.nhasanxuat);
             return View(sanpham);
         }
 
@@ -73,7 +97,8 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["lspham"] = new SelectList(_context.ctsanpham, "id", "tenloaisanpham");
+            ViewData["nsxuat"] = new SelectList(_context.nhasanxuat, "id", "tennsx");
             var sanpham = await _context.sanpham.FindAsync(id);
             if (sanpham == null)
             {
@@ -87,7 +112,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,tensanpham,gia,danhgia,hinhanh,trangthai")] sanpham sanpham)
+        public async Task<IActionResult> Edit(int id, [Bind("id,tensanpham,gia,danhgia,lspham,nsxuat,hinhanh,trangthai")] sanpham sanpham, IFormFile ful_hinhanh)
         {
             if (id != sanpham.id)
             {
@@ -98,6 +123,23 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             {
                 try
                 {
+                    if (ful_hinhanh != null)
+                    {
+                        var fileToDelete = Path.Combine(_webHostEnvironment.WebRootPath, "img", "sanphams", sanpham.hinhanh);
+                        FileInfo file = new FileInfo(fileToDelete);
+                        file.Delete();
+                        var fileName = sanpham.id.ToString() + Path.GetExtension(ful_hinhanh.FileName);
+                        var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "img", "sanphams");
+                        var filePath = Path.Combine(uploadPath, fileName);
+                        using (FileStream fs = System.IO.File.Create(filePath))
+                        {
+                            ful_hinhanh.CopyTo(fs);
+                            fs.Flush();
+                        }
+                        sanpham.hinhanh = fileName;
+                    }
+                    ViewData["lspham"] = new SelectList(_context.sanpham, "Id", "tenloai", sanpham.lspham);
+                    ViewData["nsxuat"] = new SelectList(_context.sanpham, "Id", "tennsx", sanpham.nhasanxuat);
                     _context.Update(sanpham);
                     await _context.SaveChangesAsync();
                 }
@@ -141,6 +183,12 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var sanpham = await _context.sanpham.FindAsync(id);
+            if (sanpham.hinhanh != null)
+            {
+                var fileToDelete = Path.Combine(_webHostEnvironment.WebRootPath, "img", "accounts", sanpham.hinhanh);
+                FileInfo file = new FileInfo(fileToDelete);
+                file.Delete();
+            }
             _context.sanpham.Remove(sanpham);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

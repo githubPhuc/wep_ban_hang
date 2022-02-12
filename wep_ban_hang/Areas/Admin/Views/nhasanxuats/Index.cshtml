@@ -5,56 +5,66 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="col-lg-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">DANH SÁCH NHÀ SẢN XUẤT</h4>
+            <p class="card-description">
+                <a class="btn btn-success btn-rounded btn-fw" asp-action="Create">Nhà Sản Xuất</a>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tennsx)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.hinhanh)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.diachi)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sdt)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.trangthai)
+                            </th>
+                            <th>chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tennsx)
+                                </td>
+                                <td class="py-1">
+                                    <img src="~/img/nhasx/@Html.DisplayFor(modelItem => item.hinhanh)" alt="image">
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.diachi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sdt)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.trangthai)
+                                </td>
+                                <td>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.tennsx)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.hinhanh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.diachi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.sdt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.trangthai)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.tennsx)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hinhanh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.diachi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sdt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.trangthai)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                                    <a class="btn btn-outline-success btn-fw " asp-action="Edit" asp-route-id="@item.id">Edit</a> <br />
+                                    <a class="btn btn-outline-info btn-fw" asp-action="Details" asp-route-id="@item.id">Details</a> <br />
+                                    <a class="btn btn-outline-danger btn-fw" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,44 +5,42 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>giohang</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="id" />
-            <div class="form-group">
-                <label asp-for="taikhoanid" class="control-label"></label>
-                <select asp-for="taikhoanid" class="form-control" asp-items="ViewBag.taikhoanid"></select>
-                <span asp-validation-for="taikhoanid" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="sanphamid" class="control-label"></label>
-                <select asp-for="sanphamid" class="form-control" asp-items="ViewBag.sanphamid"></select>
-                <span asp-validation-for="sanphamid" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="soluong" class="control-label"></label>
-                <input asp-for="soluong" class="form-control" />
-                <span asp-validation-for="soluong" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="trangthai" /> @Html.DisplayNameFor(model => model.trangthai)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="col-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title ">Edit</h4>
+            <p class="card-description"> Edit Carts </p>
+            <form class="forms-sample" asp-action="Edit" enctype="multipart/form-data">
+                <input type="hidden" asp-for="id" />
+                <div class="form-group">
+                    <label asp-for="taikhoanid" class="control-label"></label>
+                    <select asp-for="taikhoanid" class="form-control" asp-items="ViewBag.taikhoanid"></select>
+                    <span asp-validation-for="taikhoanid" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="sanphamid" class="control-label"></label>
+                    <select asp-for="sanphamid" class="form-control" asp-items="ViewBag.sanphamid"></select>
+                    <span asp-validation-for="sanphamid" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="soluong" class="control-label"></label>
+                    <input asp-for="soluong" class="form-control" />
+                    <span asp-validation-for="soluong" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="trangthai" /> @Html.DisplayNameFor(model => model.trangthai)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div>
+            <a class="btn btn-outline-success btn-fw " asp-action="Index">Back to List</a>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

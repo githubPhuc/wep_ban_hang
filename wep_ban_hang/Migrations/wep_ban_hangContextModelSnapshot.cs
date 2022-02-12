@@ -54,7 +54,7 @@ namespace wep_ban_hang.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("tensanpham")
+                    b.Property<string>("tenloaisanpham")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
@@ -176,7 +176,7 @@ namespace wep_ban_hang.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ctsanphamsid")
+                    b.Property<int?>("ctsanphamsid")
                         .HasColumnType("int");
 
                     b.Property<string>("danhgia")
@@ -189,8 +189,16 @@ namespace wep_ban_hang.Migrations
                     b.Property<string>("hinhanh")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("lspham")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("nhasanxuatid")
                         .HasColumnType("int");
+
+                    b.Property<string>("nsxuat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("tensanpham")
                         .IsRequired()
@@ -303,9 +311,7 @@ namespace wep_ban_hang.Migrations
                 {
                     b.HasOne("wep_ban_hang.Areas.Admin.Models.ctsanpham", "ctsanphams")
                         .WithMany("sanphams")
-                        .HasForeignKey("ctsanphamsid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ctsanphamsid");
 
                     b.HasOne("wep_ban_hang.Areas.Admin.Models.nhasanxuat", "nhasanxuat")
                         .WithMany()

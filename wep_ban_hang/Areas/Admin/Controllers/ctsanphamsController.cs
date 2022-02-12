@@ -55,7 +55,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,tensanpham,trangthai")] ctsanpham ctsanpham)
+        public async Task<IActionResult> Create([Bind("id,tenloaisanpham,trangthai")] ctsanpham ctsanpham)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,tensanpham,trangthai")] ctsanpham ctsanpham)
+        public async Task<IActionResult> Edit(int id, [Bind("id,tenloaisanpham,trangthai")] ctsanpham ctsanpham)
         {
             if (id != ctsanpham.id)
             {

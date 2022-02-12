@@ -32,7 +32,7 @@ namespace wep_ban_hang.Areas.Admin.Models
         [Display(Name = "Địa chỉ")]
         [Required(ErrorMessage = "Địa chỉ không được bỏ trống")]
         public string diachi { get; set; }
-        [Display(Name = "Phân quyền")]
+        [Display(Name = "Admin")]
         public bool isadmin { get; set; }
         [Display(Name = "Trạng thái")]
         public bool trangthai { get; set; }
