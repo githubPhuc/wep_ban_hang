@@ -5,46 +5,45 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="col-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title ">chỉnh sửa</h4>
+            <p class="card-description"> Chỉnh sửa loại sản phẩm </p>
+            <form class="forms-sample" asp-action="Edit" enctype="multipart/form-data">
 
-<h4>cthoadon</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="hoadonid" class="control-label"></label>
-                <select asp-for="hoadonid" class="form-control" asp-items="ViewBag.hoadonid"></select>
-                <span asp-validation-for="hoadonid" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="sanphamid" class="control-label"></label>
-                <select asp-for="sanphamid" class="form-control" asp-items="ViewBag.sanphamid"></select>
-                <span asp-validation-for="sanphamid" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="soluong" class="control-label"></label>
-                <input asp-for="soluong" class="form-control" />
-                <span asp-validation-for="soluong" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="gia" class="control-label"></label>
-                <input asp-for="gia" class="form-control" />
-                <span asp-validation-for="gia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="hoadonid" class="control-label"></label>
+                    <select asp-for="hoadonid" class="form-control" asp-items="ViewBag.hoadonid"></select>
+                    <span asp-validation-for="hoadonid" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="sanphamid" class="control-label"></label>
+                    <select asp-for="sanphamid" class="form-control" asp-items="ViewBag.sanphamid"></select>
+                    <span asp-validation-for="sanphamid" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="soluong" class="control-label"></label>
+                    <input asp-for="soluong" class="form-control" />
+                    <span asp-validation-for="soluong" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="gia" class="control-label"></label>
+                    <input asp-for="gia" class="form-control" />
+                    <span asp-validation-for="gia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div>
+            <a class="btn btn-outline-success btn-fw " asp-action="Index">Back to List</a>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

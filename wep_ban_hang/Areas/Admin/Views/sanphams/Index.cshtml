@@ -12,10 +12,20 @@
             <p class="card-description">
                 <a class="btn btn-success btn-rounded btn-fw" asp-action="Create">Thêm sản phẩm</a>
             </p>
+            <ul class="navbar-nav w-100">
+                <li class="nav-item w-100">
+                    <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search " asp-action="Index">
+                        <input type="text"  class="form-control" placeholder="Tìm kiếm sản phẩm" name="searchString">
+                    </form>
+                </li>
+            </ul>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.hinhanh)
+                            </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.tensanpham)
                             </th>
@@ -32,9 +42,6 @@
                                 @Html.DisplayNameFor(model => model.nsxuat)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.hinhanh)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.trangthai)
                             </th>
                             <th>Chức Năng</th>
@@ -44,6 +51,9 @@
                         @foreach (var item in Model)
                         {
                         <tr>
+                            <td class="py-1">
+                                <img src="~/img/sanphams/@Html.DisplayFor(modelItem => item.hinhanh)" alt="image">
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.tensanpham)
                             </td>
@@ -59,9 +69,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.nsxuat)
                             </td>
-                            <td class="py-1">
-                                <img src="~/img/sanphams/@Html.DisplayFor(modelItem => item.hinhanh)" alt="image">
-                            </td>
+
                             <td>
                                 @Html.DisplayFor(modelItem => item.trangthai)
                             </td>

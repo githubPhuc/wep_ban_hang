@@ -13,10 +13,6 @@ namespace wep_ban_hang.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-
-
-
-
         public IActionResult products()
         {
             return View();

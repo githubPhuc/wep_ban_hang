@@ -26,7 +26,17 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             var wep_ban_hangContext = _context.cthoadon.Include(c => c.hoadons).Include(c => c.sanphams);
             return View(await wep_ban_hangContext.ToListAsync());
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string searchString)
+        {
+            var search = from l in _context.cthoadon select l;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                search = search.Where(a => a.hoadons.ToString().Contains(searchString));
+            }
+            return View(search);
+        }
         // GET: Admin/cthoadons/Details/5
         public async Task<IActionResult> Details(int? id)
         {

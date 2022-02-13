@@ -29,7 +29,17 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         {
             return View(await _context.taikhoan.ToListAsync());
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string searchString)
+        {
+            var search = from l in _context.taikhoan select l;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                search = search.Where(a => a.tendangnhap.Contains(searchString));
+            }
+            return View(search);
+        }
         // GET: Admin/taikhoans/Details/5
         public async Task<IActionResult> Details(int? id)
         {

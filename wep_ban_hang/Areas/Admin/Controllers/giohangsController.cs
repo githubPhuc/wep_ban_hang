@@ -26,7 +26,17 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             var wep_ban_hangContext = _context.giohang.Include(g => g.sanpham).Include(g => g.taikhoans);
             return View(await wep_ban_hangContext.ToListAsync());
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //public ActionResult Index(string searchString)
+        //{
+        //    var search = from l in _context.giohang  select l;
+        //    if (!string.IsNullOrEmpty(searchString))
+        //    {
+        //        search = search.Where(a => a.tensanpham.Contains(searchString));
+        //    }
+        //    return View(search);
+        //}
         // GET: Admin/giohangs/Details/5
         public async Task<IActionResult> Details(int? id)
         {

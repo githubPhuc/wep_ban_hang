@@ -25,7 +25,25 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         {
             return View(await _context.hoadon.ToListAsync());
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string searchString)
+        {
+            var search = from l in _context.hoadon select l;
+            if (String.IsNullOrEmpty(searchString))
+            {
+                int epKieu = Convert.ToInt32(searchString);
+                if (epKieu > 0 && epKieu < 32)
+                {
+                    search = search.Where(a => a.ngaylap.Day.ToString().Contains(searchString));
+                }
+                else
+                {
+                    
+                }
+            }
+            return View(search);
+        }
         // GET: Admin/hoadons/Details/5
         public async Task<IActionResult> Details(int? id)
         {

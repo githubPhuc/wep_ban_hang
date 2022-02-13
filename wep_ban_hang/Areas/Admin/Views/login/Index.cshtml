@@ -1,18 +1,33 @@
 ﻿
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Trang đăng nhập";
+ 
+    var returnUrl = ViewData["ReturnUrl"] as string;
+    var error = TempData["Error"] as string;
+
     Layout = "~/Areas/Admin/Views/Shared/_LayoutLog.cshtml";
+}
+@if (!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert-danger" style="padding:30px;">@error</h2>
 }
 <section class="login">
     <div class="login_box">
         <div class="left">
             <div class="contact">
-                <form action="">
+                <form  asp-controller="loginController" asp-action="Index" method="post" enctype="multipart/form-data">
                     <h3>SIGN IN</h3>
-                    <input type="text" placeholder="TÀI KHOẢN">
-                    <input type="text" placeholder="MẬT KHẨU">
-                    <button class="submit">ĐĂNG NHẬP</button>
+                    <input type="text" placeholder="TÀI KHOẢN" name="tendangnhap" required>
+                    <input type="text" placeholder="MẬT KHẨU" name="matkhau" required>
+                    <button type="submit">ĐĂNG NHẬP</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Ghi nhớ đăng nhập
+                    </label>
+                    <div class="container" style="background-color:#f1f1f1">
+                        <span class="password">Quên <a href="#">mật khẩu?</a></span>
+                    </div>
                 </form>
+
             </div>
         </div>
         <div class="right">
@@ -24,3 +39,16 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.getElementById('btn').onclick = function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(this.responseText);
+            }
+        };
+        xhttp.open("GET", "Admin/Api/1");
+        xhttp.send();
+    }
+</script>

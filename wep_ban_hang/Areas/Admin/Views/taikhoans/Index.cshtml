@@ -12,6 +12,13 @@
             <p class="card-description">
                 <a class="btn btn-success btn-rounded btn-fw" asp-action="Create">Thêm tài khoản</a>
             </p>
+            <ul class="navbar-nav w-100">
+                <li class="nav-item w-100">
+                    <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search " asp-action="Index">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm tài khoản" name="searchString">
+                    </form>
+                </li>
+            </ul>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -30,38 +37,38 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td class="py-1">
-                                <img src="~/img/accounts/@Html.DisplayFor(modelItem => item.hinhanh)" alt="image">
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.hoten)
-                            </td>
-                            <td> @Html.DisplayFor(modelItem => item.tendangnhap) </td>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="~/img/accounts/@Html.DisplayFor(modelItem => item.hinhanh)" alt="image">
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.hoten)
+                                </td>
+                                <td> @Html.DisplayFor(modelItem => item.tendangnhap) </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.matkhau)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.diachi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.isadmin)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.trangthai)
-                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.matkhau)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.diachi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.isadmin)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.trangthai)
+                                </td>
 
-                            <td>
+                                <td>
 
-                                <a class="btn btn-outline-success btn-fw " asp-action="Edit" asp-route-id="@item.id">Edit</a> <br />
-                                <a class="btn btn-outline-info btn-fw" asp-action="Details" asp-route-id="@item.id">Details</a> <br />
-                                <a class="btn btn-outline-danger btn-fw" asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                            </td>
-                        </tr>
+                                    <a class="btn btn-outline-success btn-fw " asp-action="Edit" asp-route-id="@item.id">Edit</a> <br />
+                                    <a class="btn btn-outline-info btn-fw" asp-action="Details" asp-route-id="@item.id">Details</a> <br />
+                                    <a class="btn btn-outline-danger btn-fw" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                                </td>
+                            </tr>
 
                         }
                     </tbody>

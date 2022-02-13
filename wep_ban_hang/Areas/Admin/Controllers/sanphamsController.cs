@@ -31,6 +31,17 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             
             return View(await _context.sanpham.ToListAsync());
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public  ActionResult Index(string searchString)
+        {
+            var search = from l in _context.sanpham select l;
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                search = search.Where(a => a.tensanpham.Contains(searchString));
+            }    
+            return View(search);
+        }
 
         // GET: Admin/sanphams/Details/5
         public async Task<IActionResult> Details(int? id)

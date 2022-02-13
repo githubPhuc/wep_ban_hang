@@ -12,6 +12,13 @@
             <p class="card-description">
                 <a class="btn btn-success btn-rounded btn-fw" asp-action="Create">Nhà Sản Xuất</a>
             </p>
+            <ul class="navbar-nav w-100">
+                <li class="nav-item w-100">
+                    <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search " asp-action="Index">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm nhà sản xuất" name="searchString">
+                    </form>
+                </li>
+            </ul>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
