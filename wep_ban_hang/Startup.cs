@@ -25,7 +25,14 @@ namespace wep_ban_hang
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
+            });
+            // Add framework services.
+            services.AddMvc();
             services.AddControllersWithViews();
+            services.AddSession();
 
             services.AddDbContext<wep_ban_hangContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("wep_ban_hangContext")));
@@ -46,9 +53,9 @@ namespace wep_ban_hang
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -56,15 +63,15 @@ namespace wep_ban_hang
                 endpoints.MapAreaControllerRoute(
                   name: "areas",
                   areaName: "Admin",
-                  pattern: "{controller=taikhoans}/{action=index}/{id?}"
+                  pattern: "{controller=sanphams}/{action=index}/{id?}"
                 );
                 endpoints.MapControllerRoute(
-                    name: "areas",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    name: "default",
+                    pattern: "{area:exists}/{controller=login}/{action=Login}/{id?}"
                   );
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

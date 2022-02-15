@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+
+    var returnUrl = ViewData["ReturnUrl"] as string;
+    var error = TempData["Error"] as string;
+
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLog.cshtml";
+}
+@if (!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert-danger" style="padding:30px;">@error</h2>
+}
+<section class="login">
+    <div class="login_box">
+        <div class="left">
+            <div class="contact">
+                <form  asp-controller="login" asp-action="Login" method="post">
+                    <h3>SIGN IN</h3>
+                    <input type="text" placeholder="TÀI KHOẢN" name="tenDangnhap" required>
+                    <input type="password" placeholder="MẬT KHẨU" name="matKhau" required>
+                    <button type="submit">ĐĂNG NHẬP</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Ghi nhớ đăng nhập
+                    </label>
+                    <div class="container" style="background-color:#f1f1f1">
+                        <span class="password">Quên <a href="#">mật khẩu?</a></span>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-text">
+                <h2>PSHOP</h2>
+                <h5>WELCOME TO PSHOP</h5>
+            </div>
+            <div class="right-inductor"><img src="https://lh3.googleusercontent.com/fife/ABSRlIoGiXn2r0SBm7bjFHea6iCUOyY0N2SrvhNUT-orJfyGNRSMO2vfqar3R-xs5Z4xbeqYwrEMq2FXKGXm-l_H6QAlwCBk9uceKBfG-FjacfftM0WM_aoUC_oxRSXXYspQE3tCMHGvMBlb2K1NAdU6qWv3VAQAPdCo8VwTgdnyWv08CmeZ8hX_6Ty8FzetXYKnfXb0CTEFQOVF4p3R58LksVUd73FU6564OsrJt918LPEwqIPAPQ4dMgiH73sgLXnDndUDCdLSDHMSirr4uUaqbiWQq-X1SNdkh-3jzjhW4keeNt1TgQHSrzW3maYO3ryueQzYoMEhts8MP8HH5gs2NkCar9cr_guunglU7Zqaede4cLFhsCZWBLVHY4cKHgk8SzfH_0Rn3St2AQen9MaiT38L5QXsaq6zFMuGiT8M2Md50eS0JdRTdlWLJApbgAUqI3zltUXce-MaCrDtp_UiI6x3IR4fEZiCo0XDyoAesFjXZg9cIuSsLTiKkSAGzzledJU3crgSHjAIycQN2PH2_dBIa3ibAJLphqq6zLh0qiQn_dHh83ru2y7MgxRU85ithgjdIk3PgplREbW9_PLv5j9juYc1WXFNW9ML80UlTaC9D2rP3i80zESJJY56faKsA5GVCIFiUtc3EewSM_C0bkJSMiobIWiXFz7pMcadgZlweUdjBcjvaepHBe8wou0ZtDM9TKom0hs_nx_AKy0dnXGNWI1qftTjAg=w1920-h979-ft" alt=""></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('btn').onclick = function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(this.responseText);
+            }
+        };
+        xhttp.open("GET", "Admin/Sanphams/index");
+        xhttp.send();
+    }
+</script>

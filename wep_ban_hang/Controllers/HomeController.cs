@@ -6,20 +6,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using wep_ban_hang.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace wep_ban_hang.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly wep_ban_hangContext _context;
+        public HomeController(wep_ban_hangContext context,ILogger<HomeController> logger)
         {
+            _context = context;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var eshopContext = _context.sanpham.Include(p => p.ctsanphams.tenloaisanpham);
+
+            return View(await _context.sanpham.ToListAsync());
         }
         public IActionResult About()
         {

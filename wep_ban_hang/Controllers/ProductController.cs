@@ -1,21 +1,30 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using wep_ban_hang.Data;
 
 namespace wep_ban_hang.Controllers
 {
     public class ProductController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public IActionResult products()
+        private readonly wep_ban_hangContext _context;
+        public ProductController(wep_ban_hangContext context, ILogger<HomeController> logger)
         {
-            return View();
+            _context = context;
+            _logger = logger;
+        }
+        public async Task<IActionResult> products()
+        {
+            var eshopContext = _context.sanpham.Include(p => p.ctsanphams.tenloaisanpham);
+
+            return View(await _context.sanpham.ToListAsync());
         }
         public IActionResult productsDetail()
         {
@@ -27,6 +36,7 @@ namespace wep_ban_hang.Controllers
         }
         public IActionResult account()
         {
+
             return View();
         }
         public IActionResult Editaccount()

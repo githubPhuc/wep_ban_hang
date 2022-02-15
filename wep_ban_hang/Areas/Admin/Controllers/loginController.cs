@@ -154,9 +154,12 @@ using Microsoft.AspNetCore.Mvc;
 using wep_ban_hang.Areas.Admin.Models;
 using Microsoft.AspNetCore.Hosting;
 using wep_ban_hang.Data;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
 namespace wep_ban_hang.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class loginController : Controller
     {
         private readonly wep_ban_hangContext _context;
@@ -167,28 +170,21 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
         // GET: Home
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            if (Session["idUser"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            return View();
         }
 
         //GET: Register
 
-        public ActionResult Register()
+        public IActionResult Register()
         {
             return View();
         }
 
         //POST: Register
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         //public ActionResult Register(taikhoan taiKhoan)
         //{
         //    if (ModelState.IsValid)
@@ -215,7 +211,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
 
         //}
 
-        public ActionResult Login()
+        public IActionResult Login()
         {
             return View();
         }
@@ -224,36 +220,40 @@ namespace wep_ban_hang.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string tenDangnhap, string matKhau)
+        public async Task<IActionResult> Login(string tenDangnhap, string matKhau, taikhoan acc)
         {
-            if (ModelState.IsValid)
+
+
+
+            //var f_password = GetMD5(matKhau);
+            var data = _context.taikhoan.Where(s => s.tendangnhap.Equals(tenDangnhap) && s.matkhau.Equals(matKhau)).ToList();
+            if (data.Count() > 0)
             {
 
-
-                var f_password = GetMD5(matKhau);
-                var data = _context.taikhoan.Where(s => s.tendangnhap.Equals(tenDangnhap) && s.matkhau.Equals(f_password)).ToList();
-                if (data.Count() > 0)
+                HttpContext.Session.SetString("FullName", data.FirstOrDefault().hoten);
+                HttpContext.Session.SetString("tenDangnhap", data.FirstOrDefault().tendangnhap);
+                HttpContext.Session.SetInt32("id", data.FirstOrDefault().id);
+                //add session
+                if (data[0].isadmin)
                 {
-                    //add session
-                    Session["FullName"] = data.FirstOrDefault().hoten ;
-                    Session["tenDangnhap"] = data.FirstOrDefault().tendangnhap;
-                    Session["id"] = data.FirstOrDefault().id;
-                    return RedirectToAction("Index");
+                    var url = Url.RouteUrl("areas", new { controller = "sanphams", action = "index", area = "Admin" });
+                    return Redirect(url);
                 }
-                else
-                {
-                    ViewBag.error = "Login failed";
-                    return RedirectToAction("Login");
-                }
+                else { return RedirectToAction("Index", "Home"); }
             }
-            return View();
+            else
+            {
+                ViewBag.error = "Login failed";
+                return RedirectToAction("Login");
+            }
+
         }
 
 
         //Logout
-        public ActionResult Logout()
+        public IActionResult Logout()
         {
-            Session.Clear();//remove session
+            HttpContext.Session.Clear();//remove session
             return RedirectToAction("Login");
         }
 
