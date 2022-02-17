@@ -15,17 +15,18 @@
     <div class="login_box">
         <div class="left">
             <div class="contact">
-                <form  asp-controller="login" asp-action="Login" method="post">
+                <form asp-controller="login" asp-action="Login" method="post">
                     <h3>SIGN IN</h3>
                     <input type="text" placeholder="TÀI KHOẢN" name="tenDangnhap" required>
                     <input type="password" placeholder="MẬT KHẨU" name="matKhau" required>
                     <button type="submit">ĐĂNG NHẬP</button>
-                    <label>
+                    @*<label>
                         <input type="checkbox" checked="checked" name="remember"> Ghi nhớ đăng nhập
-                    </label>
+                    </label>*@
                     <div class="container" style="background-color:#f1f1f1">
                         <span class="password">Quên <a href="#">mật khẩu?</a></span>
                     </div>
+                    <div>@(ViewBag.SizeError!=null? ViewBag.SizeError:"")</div>
                 </form>
 
             </div>

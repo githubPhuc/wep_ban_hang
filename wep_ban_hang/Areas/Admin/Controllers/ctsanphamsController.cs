@@ -23,18 +23,22 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // GET: Admin/ctsanphams
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ctsanpham.ToListAsync());
+            var loaisp = await _context.ctsanpham.ToListAsync();
+            ViewData["ctsanpham"] = loaisp;
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(string searchString)
+        public async Task<IActionResult> Index(string searchString)
         {
             var search = from l in _context.ctsanpham select l;
             if (!string.IsNullOrEmpty(searchString))
             {
-                search = search.Where(a => a.tenloaisanpham.Contains(searchString));
+                search = search.Where(a => a.tenloaisanpham!.Contains(searchString));
             }
-            return View(search);
+            var loaisp = await search.ToListAsync();
+            ViewData["ctsanpham"] = loaisp;
+            return View();
         }
         // GET: Admin/ctsanphams/Details/5
         public async Task<IActionResult> Details(int? id)

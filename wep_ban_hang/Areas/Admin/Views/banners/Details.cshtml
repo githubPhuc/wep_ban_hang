@@ -1,0 +1,46 @@
+﻿@model wep_ban_hang.Areas.Admin.Models.banner
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="col-lg-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Thông tin chi tiết</h4>
+            <p class="card-description">
+                Quảng Cáo
+            </p>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.tenquangcao)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.tenquangcao)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.hinhanh)
+                </dt>
+                <dd class="col-sm-10">
+                    <div class="col-md-6">
+                        <span><img id="hinh" src="~/img/quangcao/@Html.DisplayFor(model => model.hinhanh)" width="200" height="200" alt="" /></span>
+                    </div>
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.mota)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.mota)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.trangthai)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>

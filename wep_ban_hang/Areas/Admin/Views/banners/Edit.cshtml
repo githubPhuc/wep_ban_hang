@@ -1,0 +1,60 @@
+﻿@model wep_ban_hang.Areas.Admin.Models.banner
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title ">Edit</h4>
+            <p class="card-description"> Chỉnh sửa quảng cáo </p>
+            <form class="forms-sample" asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id" />
+                <div class="form-group">
+                    <label asp-for="tenquangcao" class="control-label"></label>
+                    <input asp-for="tenquangcao" class="form-control" />
+                    <span asp-validation-for="tenquangcao" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="hinhanh" class="control-label"></label>
+                    <input accept="*.jpg,*.png" type="file" id="ful_hinhanh" name="ful_hinhanh" class="form-control" />
+                    <input type="hidden" asp-for="hinhanh" class="form-control" />
+                    <img id="imgPreview" src="~/img/sanphams/@Model.hinhanh" alt="no image" style="width: 200px" class="img-fluid" />
+
+                    <span class="input-group-append text-danger" asp-validation-for="hinhanh"> </span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="mota" class="control-label"></label>
+                    <input asp-for="mota" class="form-control" />
+                    <span asp-validation-for="mota" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="trangthai" /> @Html.DisplayNameFor(model => model.trangthai)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div>
+            <a class="btn btn-outline-success btn-fw " asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("#ful_hinhanh").on("change", function (e) {
+                var filePath = URL.createObjectURL(e.target.files[0]);
+                $("#imgPreview").show().attr("src", filePath);
+            })
+        });
+    </script>
+}

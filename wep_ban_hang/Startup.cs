@@ -63,7 +63,7 @@ namespace wep_ban_hang
                 endpoints.MapAreaControllerRoute(
                   name: "areas",
                   areaName: "Admin",
-                  pattern: "{controller=sanphams}/{action=index}/{id?}"
+                  pattern: "{controller=login}/{action=Login}/{id?}"
                 );
                 endpoints.MapControllerRoute(
                     name: "default",

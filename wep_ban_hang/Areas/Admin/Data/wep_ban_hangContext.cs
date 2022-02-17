@@ -27,5 +27,8 @@ namespace wep_ban_hang.Data
         public DbSet<wep_ban_hang.Areas.Admin.Models.cthoadon> cthoadon { get; set; }
 
         public DbSet<wep_ban_hang.Areas.Admin.Models.taikhoan> taikhoan { get; set; }
+
+        public DbSet<wep_ban_hang.Areas.Admin.Models.banner> banner { get; set; }
+       
     }
 }

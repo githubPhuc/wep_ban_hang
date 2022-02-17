@@ -1,7 +1,8 @@
-﻿@model IEnumerable<wep_ban_hang.Areas.Admin.Models.ctsanpham>
-
+﻿@model wep_ban_hang.Areas.Admin.Models.ctsanpham
+@using wep_ban_hang.Areas.Admin.Models
 @{
     ViewData["Title"] = "Index";
+    var lst = (List<ctsanpham>)ViewData["ctsanpham"];
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,9 +12,6 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">DANH SÁCH LOẠI SẢN PHẨM</h4>
-            <p class="card-description">
-                <a class="btn btn-success btn-rounded btn-fw" asp-action="Create">Thêm loại sản phẩm</a>
-            </p>
             <ul class="navbar-nav w-100">
                 <li class="nav-item w-100">
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search " asp-action="Index">
@@ -22,7 +20,7 @@
                 </li>
             </ul>
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>
@@ -35,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in lst)
                         {
                             <tr>
                                 <td>
@@ -57,3 +55,33 @@
         </div>
     </div>
 </div>
+
+<div class="col-12 grid-margin stretch-card ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title ">Create</h4>
+            <p class="card-description"> Create accounts </p>
+            <form class="forms-sample" asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="tenloaisanpham" class="control-label"></label>
+                    <input asp-for="tenloaisanpham" class="form-control" />
+                    <span asp-validation-for="tenloaisanpham" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="trangthai" /> @Html.DisplayNameFor(model => model.trangthai)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" value="Create" class="btn btn-primary mr-2">Create</button>
+                    <button class="btn btn-dark" asp-action="Index">Cancel</button>
+                </div>
+                <div>@(ViewBag.SizeError!=null? ViewBag.SizeError:"")</div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

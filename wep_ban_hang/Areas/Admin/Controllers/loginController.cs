@@ -243,7 +243,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             }
             else
             {
-                ViewBag.error = "Login failed";
+                ViewBag.error = "Đăng nhập sai tên tài khoản hoặc mật khẩu ";
                 return RedirectToAction("Login");
             }
 
