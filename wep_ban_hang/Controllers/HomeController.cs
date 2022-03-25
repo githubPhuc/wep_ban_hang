@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using wep_ban_hang.Data;
 using Microsoft.EntityFrameworkCore;
+using wep_ban_hang.Areas.Admin.Controllers;
 
 namespace wep_ban_hang.Controllers
 {
@@ -23,13 +24,26 @@ namespace wep_ban_hang.Controllers
 
         public async Task<IActionResult> Index()
         {
+            
+            var banner = from m in _context.banner select m;
+            var banners = await _context.banner.ToListAsync();
+            ViewData["banner"] = banners;
+            
             var eshopContext = _context.sanpham.Include(p => p.ctsanphams.tenloaisanpham);
-
             return View(await _context.sanpham.ToListAsync());
         }
-        public IActionResult About()
+        public async Task<IActionResult> About()
         {
-            return View();
+
+            int id = 1;
+            var banner = await _context.banner.FirstOrDefaultAsync(m => m.id == id);
+            if (banner == null)
+            {
+                return NotFound();
+            }
+
+            return View(banner);
+           
         }
         public IActionResult products()
         {

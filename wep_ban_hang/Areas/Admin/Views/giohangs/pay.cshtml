@@ -1,0 +1,39 @@
+﻿@model wep_ban_hang.Areas.Admin.Models.hoadon
+
+@{
+    ViewData["Title"] = "pay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>pay</h1>
+
+<h4>hoadon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="pay">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="diachi" class="control-label"></label>
+                <input asp-for="diachi" class="form-control" />
+                <span asp-validation-for="diachi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sodt" class="control-label"></label>
+                <input asp-for="sodt" class="form-control" />
+                <span asp-validation-for="sodt" class="text-danger"></span>
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Tổng tiền:@ViewBag.thanhtoan.ToString("#,##0") VND</strong>
+                <span class="cart-total-price"></span>
+            </div>
+            <div class="form-group">
+
+                <span>@ViewBag.ErrorMessage</span>
+                <button type="submit" class="btn btn-outline-success btn-fw ">Xác nhận</button>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -61,17 +61,20 @@ namespace wep_ban_hang
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapAreaControllerRoute(
-                  name: "areas",
-                  areaName: "Admin",
-                  pattern: "{controller=login}/{action=Login}/{id?}"
-                );
+                      name: "areas",
+                      areaName: "Admin",
+                      pattern: "{controller=login}/{action=Login}/{id?}"
+                    );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{area:exists}/{controller=login}/{action=Login}/{id?}"
                   );
+                
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
             });
         }
     }

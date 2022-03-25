@@ -22,9 +22,9 @@
                     <div class="box">
                         <div class="img-box" style="border:none" >
                             <img src="~/img/sanphams/@Html.DisplayFor(modelItem => item.hinhanh)" alt="no image" style="width: 100%; height: 100%">
-                            <a href="" class="add_cart_btn">
+                            <a  class="add_cart_btn" asp-action="productsDetail" asp-route-id="@item.id">
                                 <span>
-                                    Add To Cart
+                                    Chi Tiết
                                 </span>
                             </a>
                         </div>

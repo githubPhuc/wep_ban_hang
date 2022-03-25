@@ -30,6 +30,11 @@
                     <span asp-validation-for="danhgia" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="soluong" class="control-label"></label>
+                    <input asp-for="soluong" class="form-control" />
+                    <span asp-validation-for="soluong" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="lspham" class="control-label"></label>
                     <select asp-for="lspham" class="form-control" asp-items="ViewBag.lspham"></select>
                 </div>

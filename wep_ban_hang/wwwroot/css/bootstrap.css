@@ -1798,7 +1798,7 @@ pre code {
 @media (max-width: 575.98px) {
   .table-responsive-sm {
     display: block;
-    width: 100%;
+    width: 300px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -1808,12 +1808,12 @@ pre code {
 }
 
 @media (max-width: 767.98px) {
-  .table-responsive-md {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+    .table-responsive-md {
+        display: block;
+        width: 300px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
   .table-responsive-md > .table-bordered {
     border: 0;
   }

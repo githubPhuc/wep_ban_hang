@@ -1,7 +1,6 @@
 ﻿
 <!DOCTYPE html>
 <html>
-
 <head>
     <!-- Basic -->
     <meta charset="utf-8" />
@@ -15,23 +14,10 @@
     <meta name="author" content="" />
 
     <title>Minics</title>
-
+    @await Html.PartialAsync("_CSSPartialView")
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" />
 
-    <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"> <!-- range slider -->
-    <!-- font awesome style -->
-    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
-    
-    <link href="~/css/detai.css" rel="stylesheet" />
-    <link href="~/css/cartcss.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="~/css/style.css" rel="stylesheet" />
-    <!-- responsive style -->
-    <link href="~/css/responsive.css" rel="stylesheet" />
-    <link href="~/css/acountUser.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -44,15 +30,9 @@
                     <div class="top_nav_container">
                         <div class="contact_nav">
                             <a href="">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <i class="mdi mdi-account-check"  aria-hidden="true"></i>
                                 <span>
-                                    Call : +01 123455678990
-                                </span>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <span>
-                                    Email : demo@gmail.com
+                                    Tên Đăng Nhập : người dùng 1
                                 </span>
                             </a>
                         </div>
@@ -63,10 +43,16 @@
                             </button>
                         </from>
                         <div class="user_option_box">
-                            <a href="~/product/account" class="account-link">
+                            <a asp-controller="login" asp-action="Logout" class="account-link">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span>
-                                    My Account
+                                    Đăng Xuất
+                                </span>
+                            </a>
+                            <a asp-controller="login" asp-action="Login" class="account-link">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>
+                                    Đăng Nhập
                                 </span>
                             </a>
                             <a href="~/product/cart" class="cart-link">
@@ -233,15 +219,7 @@
     </footer>
     <!-- footer section -->
     <!-- jQery -->
-    <script src="~/js/jquery-3.4.1.min.js"></script>
-    <!-- bootstrap js -->
-    <script src="~/js/bootstrap.js"></script>
-    <!-- custom js -->
-    <script src="~/js/custom.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+    @await Html.PartialAsync("_JSPartialView")
 
 </body>
 

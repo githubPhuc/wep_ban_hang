@@ -168,7 +168,77 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult pay()
+        {
+            string user = "phuc";
+            ViewBag.Taikhoan = _context.taikhoan.Where(a => a.hoten == user&& a.isadmin==false).FirstOrDefault();
+            ViewBag.thanhtoan = _context.giohang.Include(c => c.sanpham).Include(c => c.taikhoans)
+                                              .Where(c => c.taikhoans.hoten == user && c.taikhoans.isadmin==false)
+                                              .Sum(c => c.soluong * c.sanpham.gia);
+            return View();
+        }
+        [HttpPost]
+        public IActionResult pay([Bind("diachi,sodt,soluong")] hoadon hoaDon)
+        {
+            string user = "phuc";
+            if (check(user))
+            {
+                ViewBag.ErrorMessage = "Sản phẩm đả hết hàng vui lòng kiểm tra lại :((";
+                ViewBag.Taikhoan = _context.taikhoan.Where(a => a.hoten == user).FirstOrDefault();
+                ViewBag.thanhtoan = _context.giohang.Include(c => c.sanpham).Include(c => c.taikhoans)
+                                                  .Where(c => c.taikhoans.hoten == user && c.taikhoans.isadmin == false)
+                                                  .Sum(c => c.soluong * c.sanpham.gia);
+                return View();
+            }
+            DateTime now = DateTime.Now;
+            hoaDon.mahd = now.ToString("yyMMddhhmmss");
+            hoaDon.makh = _context.taikhoan.FirstOrDefault(a => a.hoten == user && a.isadmin == false).id;
+            hoaDon.ngaylap = now;
+            
+            hoaDon.thanhtien= _context.giohang.Include(c => c.sanpham).Include(c => c.taikhoans)
+                                              .Where(c => c.taikhoans.hoten == user)
+                                              .Sum(c => c.soluong * c.sanpham.gia);
+            _context.Add(hoaDon);
+            _context.SaveChanges();
 
+            //thêm chi tiết hóa đơn
+
+            List<giohang> gioHang = _context.giohang.Include(c => c.sanpham).Include(c => c.taikhoans)
+                                              .Where(c => c.taikhoans.hoten == user)
+                                              .ToList();
+            foreach (giohang c in gioHang)
+            {
+                cthoadon ct = new cthoadon();
+                ct.hoadonid = hoaDon.id;
+                ct.sanphamid = c.sanphamid;
+                ct.soluong = c.soluong;
+                ct.gia = c.sanpham.gia;
+                _context.Add(ct);
+            }
+            _context.SaveChanges();
+            foreach(giohang c in gioHang)
+            {
+                c.sanpham.soluong -= c.soluong;
+                _context.giohang.Remove(c);
+            }
+            _context.SaveChanges();
+            return View();
+        }
+
+        private bool check(string username)
+        {
+            List<giohang> gioHang = _context.giohang.Include(c => c.sanpham).Include(c => c.taikhoans)
+                                             .Where(c => c.taikhoans.hoten == username)
+                                             .ToList();
+            foreach (giohang c in gioHang)
+            {
+                if(c.sanpham.soluong<c.soluong)
+                {
+                    return false;
+                }    
+            }
+            return true;
+        }
         private bool giohangExists(int id)
         {
             return _context.giohang.Any(e => e.id == id);

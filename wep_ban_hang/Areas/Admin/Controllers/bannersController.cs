@@ -28,11 +28,12 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // GET: Admin/banners
         public async Task<IActionResult> Index()
         {
+            
             return View(await _context.banner.ToListAsync());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(string searchString)
+        public async Task<IActionResult> Index(string searchString)
         {
             var search = from l in _context.banner select l;
             if (!string.IsNullOrEmpty(searchString))

@@ -18,7 +18,7 @@ namespace wep_ban_hang.Areas.Admin.Models
         [Display(Name = "Số lượng")]
         public int soluong { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập giá")]
-        [Display(Name = "Đơn giá")]
+        [Display(Name = "Giá")]
         public int gia { get; set; }
         public hoadon hoadons { get; set; }
         public sanpham sanphams { get; set; }

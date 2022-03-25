@@ -73,7 +73,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,mahd,makh,ngaylap,diachi,sodt,soluong,thanhtien,trangthai")] hoadon hoadon)
+        public async Task<IActionResult> Create([Bind("id,mahd,makh,ngaylap,diachi,sodt,thanhtien,trangthai")] hoadon hoadon)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,mahd,makh,ngaylap,diachi,sodt,soluong,thanhtien,trangthai")] hoadon hoadon)
+        public async Task<IActionResult> Edit(int id, [Bind("id,mahd,makh,ngaylap,diachi,sodt,thanhtien,trangthai")] hoadon hoadon)
         {
             if (id != hoadon.id)
             {
@@ -163,7 +163,24 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult statistic()
+        {
+            // báo cáo doanh thu theo tháng gần nhất
+            DateTime date = DateTime.Now;
+            DateTime lastdate = new DateTime(date.Year, date.Month, 1);
+            var invoices = _context.hoadon.Where(i => i.ngaylap >= lastdate && i.ngaylap <= date);
+            ViewBag.Total = invoices.Sum(i => i.thanhtien);
 
+            // báo cáo doanh thu theo các ngày trong `
+
+            // Top 5, 10, 15… sản phẩm bán chạy nhất.
+
+
+            return View(invoices);
+
+        }
         private bool hoadonExists(int id)
         {
             return _context.hoadon.Any(e => e.id == id);

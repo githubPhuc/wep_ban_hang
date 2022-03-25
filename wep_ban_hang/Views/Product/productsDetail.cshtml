@@ -1,70 +1,67 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model wep_ban_hang.Areas.Admin.Models.sanpham
+
 @{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 <main class="container">
 
     <!-- Left Column / Headphones Image -->
-    <div class="left-column">
-        <img data-image="black" src="images/black.png" alt="">
-        <img data-image="blue" src="images/blue.jpg" alt="">
-        <img data-image="red" class="active" src="images/red.jpg" alt="">
-    </div>
+    <div class="col-lg-12 grid-margin stretch-card ">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Chi tiết sản phẩm</h4>
+                <p class="card-description">
+                    Sản Phẩm
+                </p>
+                <form asp-controller="Product" asp-action="themgiohang">
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.tensanpham)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.tensanpham)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.gia)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.gia)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.danhgia)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.danhgia)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.hinhanh)
+                        </dt>
+                        <dd class="col-sm-10">
+                            <div class="col-md-6">
+                                <span><img id="hinh" src="~/img/sanphams/@Html.DisplayFor(model => model.hinhanh)" width="200" height="200" alt="" /></span>
+                            </div>
+                        </dd>
+                        <dt class="col-sm-2">
+                            Số lượng
+                        </dt>
+                        <dd class="col-sm-10">
+                            <input name="sl" type="number" class="form-control" />
+                        </dd>
+                        <dd class="col-sm-10">
+                            <div class="product-price">
 
-
-    <!-- Right Column -->
-    <div class="right-column">
-
-        <!-- Product Description -->
-        <div class="product-description">
-            <span>Headphones</span>
-            <h1>Beats EP</h1>
-            <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
-        </div>
-
-        <!-- Product Configuration -->
-        <div class="product-configuration">
-
-            <!-- Product Color -->
-            <div class="product-color">
-                <span>Color</span>
-
-                <div class="color-choose">
-                    <div>
-                        <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-                        <label for="red"><span></span></label>
-                    </div>
-                    <div>
-                        <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-                        <label for="blue"><span></span></label>
-                    </div>
-                    <div>
-                        <input data-image="black" type="radio" id="black" name="color" value="black">
-                        <label for="black"><span></span></label>
-                    </div>
-                </div>
-
+                                <input name="idsp" value=" @Html.DisplayFor(model => model.id)" type="hidden" />
+                                <div class="form-group">
+                                    <input type="submit" value="Thêm vào giỏ hàng" class="cart-btn btn btn-outline-success btn-fw" />
+                                </div>
+                            </div>
+                            <a class="btn btn-dark" href="~/product/products">Quay lại trang chủ</a>
+                        </dd>
+                    </dl>
+                </form>
             </div>
-
-            <!-- Cable Configuration -->
-            <div class="cable-config">
-                <span>Cable configuration</span>
-
-                <div class="cable-choose">
-                    <button>Straight</button>
-                    <button>Coiled</button>
-                    <button>Long-coiled</button>
-                </div>
-
-                <a href="#">How to configurate your headphones</a>
-            </div>
-        </div>
-
-        <!-- Product Pricing -->
-        <div class="product-price">
-            <span>148$</span>
-            <a href="#" class="cart-btn">Add to cart</a>
         </div>
     </div>
 </main>

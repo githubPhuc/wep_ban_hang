@@ -24,8 +24,6 @@ namespace wep_ban_hang.Areas.Admin.Models
         [Display(Name = "Số điện thoại")]
         [Required(ErrorMessage = "Số điện thoại không được bỏ trống")]
         public string sodt { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập số lượng")]
-        public int soluong { get; set; }
         [Display(Name = "Tổng tiền")]
         [DisplayFormat(DataFormatString = "{0:#,##0} VNĐ")]
         public int thanhtien { get; set; }

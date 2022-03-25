@@ -8,9 +8,9 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">DANH SÁCH GIỎ HÀNG</h4>
+            <h4 class="card-title">DANH SÁCH QUẢNG CÁO</h4>
             <p class="card-description">
-                <a class="btn btn-success btn-rounded btn-fw" asp-action="Create">GIỎ HÀNG</a>
+                <a class="btn btn-success btn-rounded btn-fw" asp-action="Create">QUẢNG CÁO</a>
             </p>
             <ul class="navbar-nav w-100">
                 <li class="nav-item w-100">
@@ -29,7 +29,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.hinhanh)
                             </th>
-                            <th width="350px">
+                            <th width="500px">
                                 @Html.DisplayNameFor(model => model.mota)
                             </th>
                             <th>
@@ -48,7 +48,7 @@
                                 <td>
                                     <img src="~/img/quangcao/@Html.DisplayFor(modelItem => item.hinhanh)" alt="image">
                                 </td>
-                                <td style="word-wrap: break-word;">
+                                <td width="500px">
                                     @Html.DisplayFor(modelItem => item.mota)
                                 </td>
                                 <td>

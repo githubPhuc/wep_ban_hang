@@ -17,8 +17,12 @@ namespace wep_ban_hang.Areas.Admin.Models
         [DisplayFormat(DataFormatString = "{0:#,##0} VNĐ")]
         [Required(ErrorMessage = "Giá không được bỏ trống")]
         public int gia { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập đánh giá")]
+        [Display(Name = "Mô tả")]
+        [Required(ErrorMessage = "Vui lòng nhập Mô tả")]
         public string danhgia { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập số lượng")]
+        [Display(Name = "Số lượng")]
+        public int soluong { get; set; }
         [Display(Name = "Ảnh sản phẩm")]
         [RegularExpression(@"^[a-zA-Z0-9_]+\.(jpg|JPG|png|PNG)$", ErrorMessage = "Không đúng định dạng .jpg hoặc .png")]
         public string hinhanh { get; set; }

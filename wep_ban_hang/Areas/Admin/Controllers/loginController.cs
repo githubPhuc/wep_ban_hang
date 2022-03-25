@@ -162,6 +162,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
     [Area("Admin")]
     public class loginController : Controller
     {
+        public static string usename { get; set; }
         private readonly wep_ban_hangContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
         public loginController(wep_ban_hangContext context, IWebHostEnvironment webHostEnvironment)
@@ -224,15 +225,18 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         {
 
 
-
+            usename = tenDangnhap;
             //var f_password = GetMD5(matKhau);
             var data = _context.taikhoan.Where(s => s.tendangnhap.Equals(tenDangnhap) && s.matkhau.Equals(matKhau)).ToList();
             if (data.Count() > 0)
             {
-
+                
                 HttpContext.Session.SetString("FullName", data.FirstOrDefault().hoten);
                 HttpContext.Session.SetString("tenDangnhap", data.FirstOrDefault().tendangnhap);
                 HttpContext.Session.SetInt32("id", data.FirstOrDefault().id);
+                string name = data[0].hoten;
+                HttpContext.Session.GetString("name");
+                ViewBag.name = name;
                 //add session
                 if (data[0].isadmin)
                 {
@@ -241,20 +245,19 @@ namespace wep_ban_hang.Areas.Admin.Controllers
                 }
                 else { return RedirectToAction("Index", "Home"); }
             }
-            else
-            {
+           
                 ViewBag.error = "Đăng nhập sai tên tài khoản hoặc mật khẩu ";
                 return RedirectToAction("Login");
-            }
+            
 
         }
-
+        
 
         //Logout
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();//remove session
-            return RedirectToAction("Login");
+            return RedirectToAction("login","Login");
         }
 
 

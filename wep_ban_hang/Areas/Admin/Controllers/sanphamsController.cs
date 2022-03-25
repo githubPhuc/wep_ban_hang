@@ -74,7 +74,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,tensanpham,gia,danhgia,lspham,nsxuat,hinhanh,trangthai")] sanpham sanpham, IFormFile ful_hinhanh)
+        public async Task<IActionResult> Create([Bind("id,tensanpham,gia,danhgia,soluong,lspham,nsxuat,hinhanh,trangthai")] sanpham sanpham, IFormFile ful_hinhanh)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,tensanpham,gia,danhgia,lspham,nsxuat,hinhanh,trangthai")] sanpham sanpham, IFormFile ful_hinhanh)
+        public async Task<IActionResult> Edit(int id, [Bind("id,tensanpham,gia,danhgia,soluong,lspham,nsxuat,hinhanh,trangthai")] sanpham sanpham, IFormFile ful_hinhanh)
         {
             if (id != sanpham.id)
             {
@@ -196,7 +196,7 @@ namespace wep_ban_hang.Areas.Admin.Controllers
             var sanpham = await _context.sanpham.FindAsync(id);
             if (sanpham.hinhanh != null)
             {
-                var fileToDelete = Path.Combine(_webHostEnvironment.WebRootPath, "img", "accounts", sanpham.hinhanh);
+                var fileToDelete = Path.Combine(_webHostEnvironment.WebRootPath, "img", "sanphams", sanpham.hinhanh);
                 FileInfo file = new FileInfo(fileToDelete);
                 file.Delete();
             }
